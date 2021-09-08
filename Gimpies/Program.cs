@@ -14,19 +14,27 @@ namespace Gimpies
             this.name = name;
             this.password = password;
         }
+
+
+        public bool checkLogin(string name, string pass)
+        {
+            if (this.name == name && this.password == pass)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
     }
 
     class Program
     {
         private static List<User> users = new List<User>();
 
-        public Program()
-        {
-            /*
-             * This is the admin user, or the 'Inkoop medewerker'
-             */
-            users.Add(new User("Inkoop","Gimpies_Inkoop"));
-        }
+
 
 
         public static void print(Object OBJ)
@@ -41,35 +49,59 @@ namespace Gimpies
          */
         public static bool login()
         {
-            int tries = 3;
-            
-            while (tries > 0)
-            {
                 print("Geef je username op.");
                 var name = Console.ReadLine();
                 print("Geef je password op.");
                 var password  = Console.ReadLine();
-                
+
+
                 foreach (var user in users)
                 {
-                    if (name == user.name)
+                    if (user.checkLogin(name, password))
                     {
-                        if (password == user.password)
-                        {
-                            return true;
-                        }
+                        return true;
+                    }
+                    else
+                    {
+                        login();
                     }
                 }
-
-                tries--;
                 
-            }
+                
+                // foreach (var user in users)
+                // {
+                //     if (name == user.name)
+                //     {
+                //         if (password == user.password)
+                //         {
+                //             return true;
+                //         }
+                //         else
+                //         {
+                //             print("Je wachtwoord OF gebruikersnaam is niet goed ingevuld");
+                //         }
+                //     }
+                //     else
+                //     {
+                //         print("Je gebruikersnaam is niet goed ingevuld");
+                //     }
+                // }
 
             return false;
         }
 
         static void Main(string[] args)
         {
+            
+            
+            /*
+             * Inkoop gebruiker, standart in de programma
+             */
+            users.Add(new User("Inkoop","Gimpies_Inkoop"));
+            
+            
+            bool loggedIn = login();
+            print(loggedIn);
             
         }
     }
