@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Gimpies
 {
 
-    struct User
+    class User // Asher, I blamme you, class can see you :) /s
     {
         public string name;
         public string password;
