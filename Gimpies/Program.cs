@@ -1,108 +1,146 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Gimpies
 {
-
-    class User // Asher, I blamme you, class can see you :) /s
+    partial class Program
     {
-        public string name;
-        public string password;
-
-        public User(string name,string password)
+        public struct SchoenLijst
         {
-            this.name = name;
-            this.password = password;
+            public string merk;
+            public string type;
+            public int maat;
+            public string kleur;
+            public int aantal;
+            public float prijs;
         }
 
-
-        public bool checkLogin(string name, string pass)
+        public static void print(object obj)
         {
-            if (this.name == name && this.password == pass)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            Console.WriteLine(obj);
+        }
+
+        public static string cread()
+        {
+            return Console.ReadLine();
+        }
+        public static void clear()
+        {
+            Console.Clear();
         }
         
-    }
-
-    class Program
-    {
-        private static List<User> users = new List<User>();
-
-
-
-
-        public static void print(Object OBJ)
+        static void Main(string[] args)
         {
-            Console.WriteLine(OBJ);
-        }
 
-        /*
-         * This will return true, IF the user logged in successfully. If not, it will say how many tries it has left,
-         * and after 3 tries it will exit the program.
-         * if the user does not exist in the database, we will show a error message that will inform the user that something went wrong.
-         */
-        public static bool login()
-        {
-                print("Geef je username op.");
-                var name = Console.ReadLine();
-                print("Geef je password op.");
-                var password  = Console.ReadLine();
+            List<SchoenLijst> schoenen = new List<SchoenLijst>();
+
+            schoenen.Add(new SchoenLijst()
+            {
+                merk = "Nike",
+                type = "Air Max",
+                maat = 42,
+                kleur = "Rood",
+                aantal = 17,
+                prijs = 49.99f
+            });
+            
+            int loginTries = 3;
+
+            for (int i = 1; i <= loginTries; i++)
+            {
+                print("Gebruikers naam:");
+                string name = Console.ReadLine();
+                
+                print("Wachtwoord:");
+                string password = Console.ReadLine();
 
 
-                foreach (var user in users)
+                if ((name == "Inkoop" && password == "Gimpies_Inkoop") || name == "admin" && password == "admin")
                 {
-                    if (user.checkLogin(name, password))
+                    goto menu;
+                }
+                else
+                {
+                    clear();
+                    print($"Probeer opnieuw in te loggen.\n{loginTries-i} poginingen over.");
+                }
+
+                if (i == loginTries)
+                {
+                    print("Je hebt te vaak geprobeerd in te loggen, programma sluit nu.");
+                    System.Environment.Exit(0);
+                }
+
+            }
+            
+            
+            menu:
+            {
+                clear();
+                print("Menu opties: \n [1] : Voorraad schoenen bekijken." +
+                      "\n [2] Schoenen inkoopen. \n [3] Uitloggen.");
+                int menuOption = int.Parse(cread());
+                
+                switch (menuOption)
+                {
+                    case 1:
                     {
-                        return true;
+                        goto voorraadSchoen;
+                        break;
                     }
-                    else
+                    case 2:
                     {
-                        login();
+                        goto inkoopSchoen;
+                        break;
+                    }
+                    case 3:
+                    {
+                        goto Uitloggen;
+                        break;
+                    }
+                    default:
+                    {
+                        print($"{menuOption} is geen optie in het menu");
+                        goto menu;
                     }
                 }
                 
+                voorraadSchoen:
+                {
+                    clear();
+                    foreach (var sc in schoenen)
+                    {
+                        print("[");
+                        print($"Merk: {sc.merk}\nType: {sc.type}\nMaat: {sc.maat}\nKleur: {sc.kleur}\nAantal: {sc.aantal}" +
+                              $"\nPrijs: {sc.prijs}");
+                        print("]");
+                    }
+
+                    print("Terug gaan naar het menu? [Y/N of y/n]");
+                    char answer = char.Parse(cread());
+                    if (answer == 'Y' || answer == 'y')
+                    {
+                        goto menu;
+                    }
+                    else if (answer == 'N' || answer == 'n')
+                    {
+                        print("Wat dan?");
+                    }
+                }
                 
-                // foreach (var user in users)
-                // {
-                //     if (name == user.name)
-                //     {
-                //         if (password == user.password)
-                //         {
-                //             return true;
-                //         }
-                //         else
-                //         {
-                //             print("Je wachtwoord OF gebruikersnaam is niet goed ingevuld");
-                //         }
-                //     }
-                //     else
-                //     {
-                //         print("Je gebruikersnaam is niet goed ingevuld");
-                //     }
-                // }
+                inkoopSchoen:
+                {
+                    
+                }
+                
+                Uitloggen:
+                {
+                    
+                }
 
-            return false;
-        }
+            }
 
-        static void Main(string[] args)
-        {
-            
-            
-            /*
-             * Inkoop gebruiker, standart in de programma
-             */
-            users.Add(new User("Inkoop","Gimpies_Inkoop"));
-            
-            
-            bool loggedIn = login();
-            print(loggedIn);
-            
         }
     }
 }
