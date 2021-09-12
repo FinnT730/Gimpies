@@ -32,7 +32,7 @@ namespace Gimpies
         
         static void Main(string[] args)
         {
-
+            
             List<SchoenLijst> schoenen = new List<SchoenLijst>();
 
             schoenen.Add(new SchoenLijst()
@@ -44,7 +44,7 @@ namespace Gimpies
                 aantal = 17,
                 prijs = 49.99f
             });
-            
+            start:
             int loginTries = 3;
 
             for (int i = 1; i <= loginTries; i++)
@@ -119,7 +119,7 @@ namespace Gimpies
 
                     print("Terug gaan naar het menu? [Y/N of y/n]");
                     char answer = char.Parse(cread());
-                    if (answer == 'Y' || answer == 'y')
+                    if (answer is 'Y' or 'y')
                     {
                         goto menu;
                     }
@@ -127,16 +127,63 @@ namespace Gimpies
                     {
                         print("Wat dan?");
                     }
+                    
+                    return;
                 }
                 
                 inkoopSchoen:
                 {
+                    clear();
+                    print("Koop nieuwe schoenen.");
                     
+                    print("Welke merk?");
+                    string merk = cread();
+                    
+                    print("Welke type?");
+                    string type = cread();
+                    
+                    print("Welke maat?");
+                    int maat = int.Parse(cread());
+                    
+                    print("Welke Kleur?");
+                    string kleur = cread();
+                    
+                    print("Hoeveel wil je bestellen?");
+                    int hoeveel = int.Parse(cread());
+                    
+                    print("Wat is de prijs?");
+                    float prijs = float.Parse(cread());
+
+
+                    schoenen.Add(new SchoenLijst()
+                    {
+                        merk = merk,
+                        type = type,
+                        maat = maat,
+                        kleur = kleur,
+                        aantal = hoeveel,
+                        prijs = prijs
+                    });
+
+                    print("\n\n Wil je nog meer bijvoegen? [y/n] of [Y/N]");
+                    char answer = Char.Parse(cread());
+                    if (answer is 'Y' or 'y')
+                    {
+                        goto inkoopSchoen;
+                    }
+                    else if (answer == 'N' || answer == 'n')
+                    {
+                        goto menu;
+                    }
+
+                    return;
                 }
                 
                 Uitloggen:
                 {
-                    
+                    clear();
+                    goto start;
+                    return;
                 }
 
             }
