@@ -79,7 +79,7 @@ namespace Gimpies
             {
                 clear();
                 print("Menu opties: \n [1] : Voorraad schoenen bekijken." +
-                      "\n [2] Schoenen inkoopen. \n [3] Uitloggen.");
+                      "\n [2] : Schoenen inkoopen. \n [3] : Uitloggen.");
                 int menuOption = int.Parse(cread());
                 
                 switch (menuOption)
@@ -115,6 +115,7 @@ namespace Gimpies
                         print($"Merk: {sc.merk}\nType: {sc.type}\nMaat: {sc.maat}\nKleur: {sc.kleur}\nAantal: {sc.aantal}" +
                               $"\nPrijs: {sc.prijs}");
                         print("]");
+                        print("");
                     }
 
                     print("Terug gaan naar het menu? [Y/N of y/n]");
