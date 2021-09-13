@@ -8,7 +8,7 @@ namespace Gimpies
     partial class Program
     {
 
-        public struct SchoenLijst
+        public struct SchoenStruct
         {
             public string merk;
             public string type;
@@ -33,7 +33,7 @@ namespace Gimpies
             Console.Clear();
         }
 
-        static List<SchoenLijst> schoenen = new List<SchoenLijst>();
+        static List<SchoenStruct> schoenen = new List<SchoenStruct>();
 
         static void menu()
         {
@@ -118,7 +118,7 @@ namespace Gimpies
             float prijs = float.Parse(cread());
 
 
-            schoenen.Add(new SchoenLijst()
+            schoenen.Add(new SchoenStruct()
             {
                 merk = merk,
                 type = type,
@@ -153,7 +153,7 @@ namespace Gimpies
         static void Main(string[] args)
         {
 
-            schoenen.Add(new SchoenLijst()
+            schoenen.Add(new SchoenStruct()
             {
                 merk = "Nike",
                 type = "Air Max",
@@ -162,7 +162,7 @@ namespace Gimpies
                 aantal = 17,
                 prijs = 49.99f
             });
-            start:
+            
             int loginTries = 3;
 
             for (int i = 1; i <= loginTries; i++)
@@ -190,119 +190,6 @@ namespace Gimpies
                     System.Environment.Exit(0);
                 }
 
-            }
-
-
-            // menu:
-            // {
-            //     clear();
-            //     print("Menu opties: \n [1] : Voorraad schoenen bekijken." +
-            //           "\n [2] : Schoenen inkoopen. \n [3] : Uitloggen.");
-            //     int menuOption = int.Parse(cread());
-            //     
-            //     switch (menuOption)
-            //     {
-            //         case 1:
-            //         {
-            //             goto voorraadSchoen;
-            //             break;
-            //         }
-            //         case 2:
-            //         {
-            //             goto inkoopSchoen;
-            //             break;
-            //         }
-            //         case 3:
-            //         {
-            //             goto Uitloggen;
-            //             break;
-            //         }
-            //         default:
-            //         {
-            //             print($"{menuOption} is geen optie in het menu");
-            //             goto menu;
-            //         }
-            //     }
-
-            // voorraadSchoen:
-            // {
-            //     clear();
-            //     foreach (var sc in schoenen)
-            //     {
-            //         print("[");
-            //         print($"Merk: {sc.merk}\nType: {sc.type}\nMaat: {sc.maat}\nKleur: {sc.kleur}\nAantal: {sc.aantal}" +
-            //               $"\nPrijs: {sc.prijs}");
-            //         print("]");
-            //         print("");
-            //     }
-            //
-            //     print("Terug gaan naar het menu? [Y/N of y/n]");
-            //     char answer = char.Parse(cread());
-            //     if (answer is 'Y' or 'y')
-            //     {
-            //         goto menu;
-            //     }
-            //     else if (answer == 'N' || answer == 'n')
-            //     {
-            //         print("Wat dan?");
-            //     }
-            //     
-            //     return;
-            // }
-
-            inkoopSchoen:
-            {
-                // clear();
-                // print("Koop nieuwe schoenen.");
-                //
-                // print("Welke merk?");
-                // string merk = cread();
-                //
-                // print("Welke type?");
-                // string type = cread();
-                //
-                // print("Welke maat?");
-                // int maat = int.Parse(cread());
-                //
-                // print("Welke Kleur?");
-                // string kleur = cread();
-                //
-                // print("Hoeveel wil je bestellen?");
-                // int hoeveel = int.Parse(cread());
-                //
-                // print("Wat is de prijs?");
-                // float prijs = float.Parse(cread());
-                //
-                //
-                // schoenen.Add(new SchoenLijst()
-                // {
-                //     merk = merk,
-                //     type = type,
-                //     maat = maat,
-                //     kleur = kleur,
-                //     aantal = hoeveel,
-                //     prijs = prijs
-                // });
-                //
-                // print("\n\n Wil je nog meer bijvoegen? [y/n] of [Y/N]");
-                // char answer = Char.Parse(cread());
-                // if (answer is 'Y' or 'y')
-                // {
-                //     goto inkoopSchoen;
-                // }
-                // else if (answer == 'N' || answer == 'n')
-                // {
-                //     goto menu;
-                // }
-                //
-                // return;
-            }
-
-            Uitloggen:
-            {
-                // clear();
-                // goto start;
-                // return;
             }
 
         }
