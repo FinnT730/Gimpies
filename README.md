@@ -5,3 +5,5 @@ What needs to be done:
 * there should be a menu
 * and the user (Inkoop user) should be able to view the inventory
 
+
+[![.NET](https://github.com/FinnT730/Gimpies/actions/workflows/dotnet.yml/badge.svg)](https://github.com/FinnT730/Gimpies/actions/workflows/dotnet.yml)
