@@ -112,8 +112,15 @@ namespace Gimpies
             print("Hoeveel wil je bestellen?");
             int hoeveel = int.Parse(cread());
 
+            if (hoeveel < 1)
+            {
+                print("De hoeveelheid moet positief zijn. Vul het opniew in.");
+                hoeveel = int.Parse(cread());
+            }
+            
             print("Wat is de prijs?");
             float prijs = float.Parse(cread());
+            
 
 
             schoenen.Add(new SchoenStruct()
@@ -169,7 +176,24 @@ namespace Gimpies
                 string name = Console.ReadLine();
 
                 print("Wachtwoord:");
-                string password = Console.ReadLine();
+                // string password = Console.ReadLine();
+                string password = "";
+                ConsoleKey key;
+                do
+                {
+                    var keyInfo = Console.ReadKey(intercept: true);
+                    key = keyInfo.Key;
+                    if (key == ConsoleKey.Backspace && password.Length > 0)
+                    {
+                        Console.Write("\b \b");
+                        password = password[0..^1];
+                    }
+                    else if (!char.IsControl(keyInfo.KeyChar))
+                    {
+                        Console.Write("*");
+                        password += keyInfo.KeyChar;
+                    }
+                } while (key != ConsoleKey.Enter);
 
 
                 if ((name == "Inkoop" && password == "Gimpies_Inkoop") || name == "admin" && password == "admin")
