@@ -5,7 +5,6 @@ namespace Gimpies
 {
     class Program
     {
-
         // Struct om data van de schoenen op te slaan
         public struct SchoenStruct
         {
@@ -129,8 +128,6 @@ namespace Gimpies
             print("Wat is de prijs?");
             float prijs = float.Parse(cread());
             
-
-
             schoenen.Add(new SchoenStruct()
             {
                 merk = merk,
@@ -162,8 +159,7 @@ namespace Gimpies
             // goto start;
             return;
         }
-
-
+        
         // Hello World!
         static void Main(string[] args)
         {
@@ -227,6 +223,5 @@ namespace Gimpies
             }
 
         }
-
     }
 }
