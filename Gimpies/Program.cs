@@ -6,6 +6,7 @@ namespace Gimpies
     class Program
     {
 
+        // Struct om data van de schoenen op te slaan
         public struct SchoenStruct
         {
             public string merk;
@@ -16,23 +17,28 @@ namespace Gimpies
             public float prijs;
         }
 
+        // print is gebruikt om naar de console printen
         public static void print(object obj)
         {
             Console.WriteLine(obj);
         }
 
+        // print is gebruikt om van de console lezen
         public static string cread()
         {
             return Console.ReadLine();
         }
 
+        // print is gebruikt om de console leeg te maken
         public static void clear()
         {
             Console.Clear();
         }
-
+        
+        // Hier worden alle schoenen opgeslagen
         static List<SchoenStruct> schoenen = new List<SchoenStruct>();
 
+        // Hier word alles van de menu geregeld
         static void menu()
         {
             clear();
@@ -65,6 +71,7 @@ namespace Gimpies
                 }
             }
 
+            // Hier kunnen we de voorraad van de schoenen uitlesen en printen naar de console
             static void voorraadSchoenen()
             {
                 clear();
@@ -92,6 +99,7 @@ namespace Gimpies
             }
         }
 
+        // hier kunnen we schoenen inkoopen
         static void inkoopSchoenen()
         {
             clear();
@@ -147,6 +155,7 @@ namespace Gimpies
             return;
         }
 
+        // hier kunnen we uitloggen van de app
         static void uitloggen()
         {
             clear();
@@ -155,8 +164,12 @@ namespace Gimpies
         }
 
 
+        // Hello World!
         static void Main(string[] args)
         {
+
+            const string INKOOPLOGIN = "Inkoop";
+            const string INKOOPPASSWORD = "Gimpies_Inkoop";
 
             schoenen.Add(new SchoenStruct()
             {
@@ -176,7 +189,6 @@ namespace Gimpies
                 string name = Console.ReadLine();
 
                 print("Wachtwoord:");
-                // string password = Console.ReadLine();
                 string password = "";
                 ConsoleKey key;
                 do
@@ -196,7 +208,7 @@ namespace Gimpies
                 } while (key != ConsoleKey.Enter);
 
 
-                if ((name == "Inkoop" && password == "Gimpies_Inkoop") || name == "admin" && password == "admin")
+                if ((name == INKOOPLOGIN && password == INKOOPPASSWORD) || name == "admin" && password == "admin")
                 {
                     menu();
                 }
